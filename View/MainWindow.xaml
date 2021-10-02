@@ -1,0 +1,91 @@
+﻿<Window x:Class="MultiThreading.View.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MultiThreading.View"
+        mc:Ignorable="d"
+        Title="Multi-Threading Example" Height="550" Width="625">    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*" />
+            <ColumnDefinition Width="4*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="9*" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+        <ListView Name="plantsListView"
+                  Grid.Column="0"
+                  Grid.Row="0"
+                  Margin="10,10,10,10"
+                  ItemsSource="{Binding Plants}"
+                  SelectedItem="{Binding SelectedPlant, Mode=TwoWay}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock FontWeight="Bold" FontFamily="Calibri" FontSize="18">
+                            <TextBlock.Text>
+                                <MultiBinding StringFormat="{}{0}.{1}">                                    
+                                    <Binding Path="Number"/>
+                                    <Binding Path="Common"/>
+                                </MultiBinding>
+                            </TextBlock.Text>
+                        </TextBlock>                        
+                        <TextBlock Text="{Binding Botanical}" FontSize="14" FontStyle="Italic" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="1" Margin="10,0,5,10">
+            <Button Name="loadPlantsButton"                
+                Margin="0,0,0,0"
+                Content="Load Plants"
+                Command="{Binding LoadPlantsCommand}">
+            </Button>
+            <Button Name="clearPlantsButton"                
+                Margin="10,0,0,0"
+                Content="Clear Plants"
+                Command="{Binding ClearPlantsCommand}">
+            </Button>
+            <Button Name="trickleFeedPlantsCommandButton"                
+                Margin="10,0,0,0"
+                Content="Trickle Feed"
+                Command="{Binding TrickleFeedPlantsCommand}">
+            </Button>
+        </StackPanel>        
+        <Grid Grid.Column="1" Grid.Row="0" Margin="10">            
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="3*" />
+                </Grid.ColumnDefinitions>
+                <StackPanel Name="plantLabels" Orientation="Vertical" Grid.Column="0">
+                    <TextBlock Text="Common Name:" FontFamily="Calibri" FontSize="18" FontWeight="Bold" Margin="0,0,0,15" />
+                    <TextBlock Text="Botanical Name:" FontFamily="Calibri" FontSize="18" FontWeight="Bold" Margin="0,0,0,15" />
+                    <TextBlock Text="Zone:" FontFamily="Calibri" FontSize="18" FontWeight="Bold" Margin="0,0,0,15" />
+                    <TextBlock Text="Light:" FontFamily="Calibri" FontSize="18" FontWeight="Bold" Margin="0,0,0,15" />
+                    <TextBlock Text="Price:" FontFamily="Calibri" FontSize="18" FontWeight="Bold" Margin="0,0,0,15" />
+                    <TextBlock Text="Availability:" FontFamily="Calibri" FontSize="18" FontWeight="Bold" Margin="0,0,0,15" />
+                </StackPanel>
+                <StackPanel Name="plantValues" Orientation="Vertical" Grid.Column="1">
+                    <TextBlock Text="{Binding SelectedPlant.Common}" FontFamily="Calibri" FontSize="18" FontStyle="Italic" Margin="30,0,0,15" />
+                    <TextBlock Text="{Binding SelectedPlant.Botanical}" FontFamily="Calibri" FontSize="18" FontStyle="Italic" Margin="30,0,0,15" />
+                    <TextBlock Text="{Binding SelectedPlant.Zone}" FontFamily="Calibri" FontSize="18" FontStyle="Italic" Margin="30,0,0,15" />
+                    <TextBlock Text="{Binding SelectedPlant.Light}" FontFamily="Calibri" FontSize="18" FontStyle="Italic" Margin="30,0,0,15" />
+                    <TextBlock Text="{Binding SelectedPlant.Price}" FontFamily="Calibri" FontSize="18" FontStyle="Italic" Margin="30,0,0,15" />
+                    <TextBlock Text="{Binding SelectedPlant.Availability}" FontFamily="Calibri" FontSize="18" FontStyle="Italic" Margin="30,0,0,15" />
+                </StackPanel>
+            </Grid>
+            <Image Grid.Row="1" Source="/Resources/SpiderPlant.jpg" Stretch="Fill" />
+        </Grid>
+        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1" Margin="10,0,0,0">
+            <TextBlock Text="Total items:" FontFamily="Calibri" FontSize="18" FontWeight="Bold" Margin="0,0,10,0" />
+            <TextBlock Text="{Binding Plants.Count}" FontFamily="Calibri" FontSize="18" FontStyle="Italic" Margin="0,0,0,0" />
+        </StackPanel>
+    </Grid>
+</Window>

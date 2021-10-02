@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="ISO8859-1" ?>
+<PLANT>
+    <COMMON>California Poppy</COMMON>
+    <BOTANICAL>Eschscholzia californica</BOTANICAL>
+    <ZONE>Annual</ZONE>
+    <LIGHT>Sun</LIGHT>
+    <PRICE>$7.89</PRICE>
+    <AVAILABILITY>032799</AVAILABILITY>
+  </PLANT>
